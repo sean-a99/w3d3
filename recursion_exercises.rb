@@ -103,10 +103,38 @@ def bsearch(array, target)
     end
 end
 
-p bsearch([1, 2, 3], 1) # => 0
-p bsearch([2, 3, 4, 5], 3) # => 1
-p bsearch([2, 4, 6, 8, 10], 6) # => 2
-p bsearch([1, 3, 4, 5, 9], 5) # => 3
-p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
-p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
-p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+# p bsearch([1, 2, 3], 1) # => 0
+# p bsearch([2, 3, 4, 5], 3) # => 1
+# p bsearch([2, 4, 6, 8, 10], 6) # => 2
+# p bsearch([1, 3, 4, 5, 9], 5) # => 3
+# p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+# p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+# p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+
+def merge_sort(arr)
+    return arr if arr.length <= 1
+    mid = arr.length / 2
+    merge(merge_sort(arr[0...mid]), merge_sort(arr[mid..-1]))
+end
+
+
+def merge(arr_1, arr_2)
+    merged = []
+
+    while !arr_1.empty? && !arr_2.empty?
+        if arr_1[0] < arr_2[0]
+            num = arr_1.shift
+            merged << num
+        else
+            num = arr_2.shift
+            merged << num
+        end
+    end
+    merged + arr_1 + arr_2
+end
+
+# arr = [4, 2, 6, 5, 1, 0, 7, 3]
+
+# p merge_sort(arr)
+
+
