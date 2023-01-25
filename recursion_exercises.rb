@@ -85,3 +85,28 @@ end
 
 # p fib_array(7)
 
+
+def bsearch(array, target)
+    return nil if array.empty?
+    mid = array.length / 2
+    current = array[mid]
+    return mid if current == target
+    if target < current
+        return bsearch(array[0...mid], target)
+    else
+        iterative_step = bsearch(array[mid + 1..-1], target)
+        if !iterative_step
+            return nil
+        else
+            return mid + 1 + iterative_step
+        end
+    end
+end
+
+p bsearch([1, 2, 3], 1) # => 0
+p bsearch([2, 3, 4, 5], 3) # => 1
+p bsearch([2, 4, 6, 8, 10], 6) # => 2
+p bsearch([1, 3, 4, 5, 9], 5) # => 3
+p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
